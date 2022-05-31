@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import useInterval from "@use-it/interval";
 import { motion } from "framer-motion";
+import Message from "./components/Message";
+import Typing from "./components/Typing";
 import "./App.css";
 
 // TODO : render all Messages
@@ -26,6 +28,7 @@ const messages = [
 export default function App() {
   const [messageToShow, setMessageToShow] = useState(0);
   const [delay, setDelay] = useState(3500);
+
   useInterval(() => {
     setMessageToShow((messageToShow) => messageToShow + 1);
   }, delay);
@@ -35,26 +38,6 @@ export default function App() {
       setDelay(null);
     }
   }, [messageToShow]);
-  console.log("rendered");
-  // let idRef = useRef(null);
-  // function removeInterval() {
-  //   if (idRef.current) {
-  //     clearInterval(idRef.current);
-  //   }
-  // }
-
-  // //  TODO : create timer and show one by one after 4sec
-  // useEffect(() => {
-  //   idRef.current = setInterval(() => {
-  //     setMessageToShow((prev) => prev + 1);
-  //   }, 3000);
-  // }, []);
-  // console.log("rendered");
-  // useEffect(() => {
-  //   if (messageToShow === messages.length - 1) {
-  //     removeInterval();
-  //   }
-  // });
 
   return (
     <div className="app">
@@ -107,44 +90,5 @@ export default function App() {
         })}
       </motion.div>
     </div>
-  );
-}
-
-// TODO : create Typing indicator and show them
-function Typing({ even }) {
-  let initX = even ? 200 : -200;
-  return (
-    <motion.div
-      className={`typing ${even ? "is-right" : "is-left"}`}
-      initial={{ translateX: initX, opacity: 0.1 }}
-      animate={{ translateX: 0, opacity: 1 }}
-      transition={{ duration: 0 }}
-    >
-      <div className="dots">
-        <div />
-        <div />
-        <div />
-      </div>
-    </motion.div>
-  );
-}
-
-function Message({ message, even }) {
-  let initX = even ? 300 : -300;
-
-  return (
-    // TODO : add animations on Messages using framer-motion
-    <motion.div className="message">
-      <div className="avatar">👦</div>
-      <motion.div
-        className="text"
-        initial={{ translateX: initX, opacity: 0.2, scale: 0.1 }}
-        animate={{ translateX: 0, opacity: 1, scale: 1 }}
-        transition={{ duration: 0.4 }}
-      >
-        {message.text}
-      </motion.div>
-      <div className="avatar">👩</div>
-    </motion.div>
   );
 }
