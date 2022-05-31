@@ -72,7 +72,7 @@ body {
   min-height: 600px;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: flex-end;
   align-items: center;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
     0 4px 6px -2px rgba(0, 0, 0, 0.05);
@@ -165,7 +165,7 @@ body {
 }
 
 .message:nth-child(even) {
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .message:nth-child(even)>div:first-child {
@@ -203,7 +203,7 @@ body {
 }
 
 .message:nth-child(even) .text {
-  justify-content: end;
+  justify-content: flex-end;
   /* background-color: #3acf3d; */
   background-color: #08b02b;
 }
